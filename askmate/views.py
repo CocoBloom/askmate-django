@@ -1,27 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .models import Post
 # Create your views here.
-
-posts = [
-    {
-        'author': 'Virág',
-        'title': 'First Question',
-        'content': 'This is my first question  in Django',
-        'date_posted': 'Apr 2, 2020'
-    },
-    {
-        'author': 'Coco',
-        'title': 'First Coco',
-        'content': 'This is my Coco in Django',
-        'date_posted': 'Apr 1, 2020'
-    }
-]
 
 
 def home(request):
     context = {
-        'posts': posts,
+        'posts': Post.objects.all(),
         'title': 'Juhuu page'
     }
     return render(request, 'askmate/home.html', context)
